@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#FFF7F5">
+  <title>Something for Ely</title>
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Playfair Display = headings, Nunito = nav tabs (both unchanged).
+       Quicksand = text, Dancing Script = handwriting, Pacifico = "Something for Ely". -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Nunito:wght@700&family=Pacifico&family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="is-locked">
+  <a class="skip-link" href="#home">Skip to the journal</a>
+
+  <!-- Shared SVG bits: the heart clip for letters and the hand-drawn wobble for the cover lettering -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <clipPath id="heartClip" clipPathUnits="objectBoundingBox">
+        <path transform="translate(0 -0.122) scale(0.01 0.0122)"
+              d="M50 92C8 63 0 36 17 19c12-11 27-6 33 7 6-13 21-18 33-7 17 17 9 44-33 73z"/>
+      </clipPath>
+      <filter id="wobble" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="3" result="noise"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <div class="bloom" id="bloom" aria-hidden="true"></div>
+  <div class="petals" id="petals" aria-hidden="true"></div>
+
+  <!-- ===================================================================
+       Cover: the notebook
+       =================================================================== -->
+  <section class="cover" id="cover" aria-label="Cover">
+    <div class="cover__inner">
+      <div class="notebook" id="journal" data-cover-el>
+        <span class="notebook__tab notebook__tab--1" aria-hidden="true"></span>
+        <span class="notebook__tab notebook__tab--2" aria-hidden="true"></span>
+        <span class="notebook__tab notebook__tab--3" aria-hidden="true"></span>
+
+        <div class="notebook__page">
+          <span class="hole hole--top" aria-hidden="true"></span>
+          <span class="hole hole--bottom" aria-hidden="true"></span>
+          <div class="notebook__heart" aria-hidden="true"></div>
+
+          <svg class="star star--pink" viewBox="0 0 100 100" aria-hidden="true">
+            <polygon points="50,8 62,38 94,40 69,60 78,92 50,74 22,92 31,60 6,40 38,38"/>
+          </svg>
+          <svg class="star star--gold" viewBox="0 0 100 100" aria-hidden="true">
+            <polygon points="50,8 62,38 94,40 69,60 78,92 50,74 22,92 31,60 6,40 38,38"/>
+          </svg>
+
+          <h1 class="notebook__title">
+            <span class="t1">Something</span>
+            <span class="t2"><small>for</small>Ely</span>
+          </h1>
+
+          <div class="notebook__cta">
+            <button type="button" class="unlock" id="unlockBtn">Open</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="burst" id="burst" aria-hidden="true"></div>
+
+  <!-- ===================================================================
+       The journal
+       =================================================================== -->
+  <div class="site" id="site" aria-hidden="true">
+
+    <header class="nav" id="nav">
+      <a class="nav__brand" href="#cover" aria-label="Something for Ely: back to the notebook cover">
+        <span class="nav__mark" aria-hidden="true"></span>Something for Ely
+      </a>
+      <nav class="nav__tabs" id="navTabs" aria-label="Sections">
+        <a class="nav__link" href="#home"     style="--tab:#F4B6C9">Hello</a>
+        <a class="nav__link" href="#letters"  style="--tab:#F06EA9">Letters</a>
+        <a class="nav__link" href="#music"    style="--tab:#C9ADE4">Music</a>
+        <a class="nav__link" href="#memories" style="--tab:#F58FBE">Memories</a>
+      </nav>
+    </header>
+
+    <main class="pages">
+
+      <!-- Hello -->
+      <section class="panel page panel--home" id="home" tabindex="-1" aria-labelledby="homeTitle">
+        <p class="page__eyebrow reveal">01</p>
+        <h2 class="page__title page__title--home reveal" id="homeTitle" data-delay="1">Hello, Ely</h2>
+        <span class="rule reveal" data-reveal="scale" data-delay="2">sdfdsfdsfds</span>
+        <p class="lede reveal" data-delay="3">udhauduasd</p>
+        <p class="lede lede--quiet reveal" data-delay="4">fsdnfjsfd</p>
+        </nav>
+      </section>
+
+      <!-- Letters -->
+      <section class="panel page" id="letters" tabindex="-1" aria-labelledby="lettersTitle">
+        <div class="page__head reveal">
+          <p class="page__eyebrow">02</p>
+          <h2 class="page__title" id="lettersTitle">Letters</h2>
+          <span class="rule"></span>
+          <p class="lede">What's on my mind.</p>
+        </div>
+        <div class="section-toolbar">
+          <button type="button" class="btn-write" id="writeLetterBtn">&#9998; Write a Letter</button>
+        </div>
+        <div class="heart-grid" id="heartGrid"></div>
+      </section>
+
+      <!-- Music -->
+      <section class="panel page" id="music" tabindex="-1" aria-labelledby="musicTitle">
+        <div class="page__head reveal">
+          <p class="page__eyebrow">03</p>
+          <h2 class="page__title" id="musicTitle">Music</h2>
+          <span class="rule"></span>
+          <p class="lede">Songs that reminds me of you.</p>
+        </div>
+        <div class="section-toolbar">
+          <button type="button" class="btn-write" id="dedicateSongBtn">&#9834; Dedicate a Song</button>
+        </div>
+        <div class="music-grid" id="musicGrid"></div>
+      </section>
+
+      <!-- Memories -->
+      <section class="panel page" id="memories" tabindex="-1" aria-labelledby="memoriesTitle">
+        <div class="page__head reveal">
+          <p class="page__eyebrow">04</p>
+          <h2 class="page__title" id="memoriesTitle">Photos</h2>
+          <span class="rule"></span>
+          <p class="lede">Say cheese!</p>
+        </div>
+        <div class="section-toolbar">
+          <button type="button" class="btn-write" id="addMemoryBtn">&#128247; Add Memory</button>
+        </div>
+        <div class="memory-grid" id="memoryGrid"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- ===================================================================
+       Letter reader
+       =================================================================== -->
+  <div class="letter-reader" id="letterReader" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="letterReaderTitle">
+    <div class="letter-reader__backdrop" data-reader-close></div>
+    <article class="letter-reader__sheet" id="letterReaderSheet">
+      <div class="letter-reader__inner">
+        <p class="letter-reader__date" id="letterReaderDate"></p>
+        <h2 class="letter-reader__title" id="letterReaderTitle"></h2>
+        <div class="letter-reader__body" id="letterReaderBody"></div>
+        <div class="letter-reader__actions">
+          <button type="button" class="chip-btn" id="editLetterBtn">&#9998; Edit</button>
+          <button type="button" class="chip-btn chip-btn--danger" id="deleteLetterBtn">&#10005; Delete</button>
+          <button type="button" class="chip-btn chip-btn--quiet" data-reader-close>Close</button>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- ===================================================================
+       Modals
+       =================================================================== -->
+
+  <!-- Write / edit a letter -->
+  <div class="modal" id="letterModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="letterModalTitle">
+    <div class="modal__backdrop" data-modal-close="letterModal"></div>
+    <div class="modal__panel">
+      <button type="button" class="modal__close" aria-label="Close" data-modal-close="letterModal">&times;</button>
+      <p class="modal__eyebrow">dear Ely</p>
+      <h2 class="modal__title" id="letterModalTitle">Write a Letter</h2>
+      <label class="field">
+        <span class="field__label">Title <em>(optional)</em></span>
+        <input class="field__input" id="letterTitleInput" type="text" maxlength="60" autocomplete="off">
+      </label>
+      <label class="field">
+        <span class="field__label">Your letter</span>
+        <textarea class="field__textarea journal-lines" id="letterBodyInput" rows="9"></textarea>
+      </label>
+      <div class="modal__actions">
+        <button type="button" class="btn-ghost" data-modal-close="letterModal">Cancel</button>
+        <button type="button" class="btn-primary" id="finishLetterBtn">Finish</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dedicate / edit a song -->
+  <div class="modal" id="musicModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="musicModalTitle">
+    <div class="modal__backdrop" data-modal-close="musicModal"></div>
+    <div class="modal__panel">
+      <button type="button" class="modal__close" aria-label="Close" data-modal-close="musicModal">&times;</button>
+      <p class="modal__eyebrow">for her ears</p>
+      <h2 class="modal__title" id="musicModalTitle">Dedicate a Song</h2>
+      <label class="field">
+        <span class="field__label">Spotify link</span>
+        <input class="field__input" id="spotifyLinkInput" type="text" placeholder="https://open.spotify.com/track/..." autocomplete="off">
+      </label>
+      <p class="field__error" id="spotifyError" hidden>That doesn&rsquo;t look like a Spotify track, album or playlist link.</p>
+      <div class="spotify-preview" id="spotifyPreview" hidden></div>
+      <label class="field">
+        <span class="field__label">A note for the song <em>(optional)</em></span>
+        <input class="field__input" id="songNoteInput" type="text" maxlength="120" autocomplete="off">
+      </label>
+      <div class="modal__actions">
+        <button type="button" class="btn-ghost" data-modal-close="musicModal">Cancel</button>
+        <button type="button" class="btn-primary" id="saveSongBtn" disabled>Add Song</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add / edit a memory -->
+  <div class="modal" id="memoryModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="memoryModalTitle">
+    <div class="modal__backdrop" data-modal-close="memoryModal"></div>
+    <div class="modal__panel">
+      <button type="button" class="modal__close" aria-label="Close" data-modal-close="memoryModal">&times;</button>
+      <p class="modal__eyebrow">a moment to keep</p>
+      <h2 class="modal__title" id="memoryModalTitle">Add a Memory</h2>
+
+      <div class="field field--upload">
+        <input class="field__file" id="memoryPhotoInput" type="file" accept="image/*">
+        <label class="field__upload-face" id="memoryUploadFace" for="memoryPhotoInput">
+          <span class="field__upload-icon" aria-hidden="true">&#128247;</span>
+          <span class="field__upload-text" id="memoryUploadText">Choose a photo</span>
+        </label>
+      </div>
+      <p class="field__error" id="memoryError" role="alert" hidden></p>
+
+      <label class="field">
+        <span class="field__label">Caption <em>(optional)</em></span>
+        <input class="field__input" id="memoryCaptionInput" type="text" maxlength="40" placeholder="The day we..." autocomplete="off">
+      </label>
+      <label class="field">
+        <span class="field__label">When was this? <em>(optional)</em></span>
+        <input class="field__input" id="memoryDateInput" type="date">
+      </label>
+      <label class="field">
+        <span class="field__label">Note for the back <em>(optional)</em></span>
+        <textarea class="field__textarea journal-lines" id="memoryNoteInput" rows="4" placeholder="What do you want her to remember about this?"></textarea>
+      </label>
+
+      <div class="modal__actions">
+        <button type="button" class="btn-ghost" data-modal-close="memoryModal">Cancel</button>
+        <button type="button" class="btn-primary" id="saveMemoryBtn">Add Memory</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add / edit a reason or a list item (shared) -->
+  <div class="modal" id="textModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="textModalTitle">
+    <div class="modal__backdrop" data-modal-close="textModal"></div>
+    <div class="modal__panel">
+      <button type="button" class="modal__close" aria-label="Close" data-modal-close="textModal">&times;</button>
+      <p class="modal__eyebrow" id="textModalEyebrow"></p>
+      <h2 class="modal__title" id="textModalTitle"></h2>
+      <label class="field">
+        <span class="field__label" id="textModalLabel"></span>
+        <textarea class="field__textarea" id="textModalInput" rows="3"></textarea>
+      </label>
+      <div class="modal__actions">
+        <button type="button" class="btn-ghost" data-modal-close="textModal">Cancel</button>
+        <button type="button" class="btn-primary" id="textModalSave">Add</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Are you sure? (every delete asks first) -->
+  <div class="modal" id="confirmModal" role="alertdialog" aria-modal="true" aria-hidden="true" aria-labelledby="confirmMessage">
+    <div class="modal__backdrop" data-modal-close="confirmModal"></div>
+    <div class="modal__panel modal__panel--small">
+      <h2 class="modal__title modal__title--small" id="confirmMessage">Delete this?</h2>
+      <div class="modal__actions">
+        <button type="button" class="btn-ghost" data-modal-close="confirmModal">Keep it</button>
+        <button type="button" class="btn-primary btn-primary--danger" id="confirmYes">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="components/animations.js"></script>
+  <script src="components/letters.js"></script>
+  <script src="components/music.js"></script>
+  <script src="components/memories.js"></script>
+  <script src="components/lists.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
